@@ -69,8 +69,12 @@ flowchart TD
     A --> H[CarRentalMvc.csproj]
 ```
 
-## 👤About the Author
+## 🧑‍💻About the Author
 
-This Car Rental Website(DriveEase) is developed by [Divy Lathiya](https://github.com/DivyLathiya).
+This Car Rental Website(DriveEase) is developed by 
 
-🎉Thank You for Visiting.🎉
+👤Name: [Divy Lathiya](https://github.com/DivyLathiya).
+
+🆔Enrollment No.: 202303103510383
+
+# 🎉Thank You for Visiting.🎉
