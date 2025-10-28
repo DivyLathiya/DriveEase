@@ -72,7 +72,7 @@ flowchart TD
 ## 📸Screenshots
 
 ### 🔐Login Page
-![Login Page]("https://github.com/user-attachments/assets/5fc8e7ee-72df-4955-bf22-ab2ec66f0493")
+![Login Page](https://github.com/user-attachments/assets/5fc8e7ee-72df-4955-bf22-ab2ec66f0493)
 
 ### 🏠User Page
 ![User Page](https://github.com/user-attachments/assets/8d0d4616-9404-4048-aeaf-32952ac00e01)
