@@ -69,6 +69,17 @@ flowchart TD
     A --> H[CarRentalMvc.csproj]
 ```
 
+## 📸Screenshots
+
+### 🔐Login Page
+![Login Page]("https://github.com/user-attachments/assets/5fc8e7ee-72df-4955-bf22-ab2ec66f0493")
+
+### 🏠User Page
+![User Page](https://github.com/user-attachments/assets/8d0d4616-9404-4048-aeaf-32952ac00e01)
+
+### 👨‍💼Admin page
+![Admin page](https://github.com/user-attachments/assets/561daae1-e09a-4fbe-bbcb-6a7c4279c809)
+
 ## 🧑‍💻About the Author
 
 This Car Rental Website(DriveEase) is developed by 
