@@ -1,0 +1,62 @@
+@using CarRentalMvc.Models
+@model Booking
+@{
+    ViewData["Title"] = "Confirm Booking";
+    var car = ViewBag.Car as Car; // Get the car details
+}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Car Details Column -->
+    <div class="md:col-span-1">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="@car.Img" alt="@car.Name" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold mb-1">@car.Name</h3>
+                <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">@car.Type</span>
+                <p class="text-3xl font-bold text-gray-900">$@car.Price.ToString("F2") <span class="text-sm font-normal text-gray-600">/ day</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Form Column -->
+    <div class="md:col-span-2">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Confirm Your Details</h2>
+            
+            <form asp-action="Book" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm mb-4"></div>
+                
+                <!-- Hidden fields for data that doesn't change -->
+                <input type="hidden" asp-for="CarId" />
+                <input type="hidden" asp-for="CarName" />
+                <input type="hidden" asp-for="UserEmail" />
+                
+                <div class="space-y-4">
+                    <div>
+                        <label asp-for="UserName" class="block text-sm font-medium text-gray-700"></label>
+                        <input asp-for="UserName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                        <span asp-validation-for="UserName" class="text-red-600 text-xs"></span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label asp-for="PickupDate" class="block text-sm font-medium text-gray-700"></label>
+                            <input asp-for="PickupDate" type="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                            <span asp-validation-for="PickupDate" class="text-red-600 text-xs"></span>
+                        </div>
+                        <div>
+                            <label asp-for="DropoffDate" class="block text-sm font-medium text-gray-700"></label>
+                            <input asp-for="DropoffDate" type="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                            <span asp-validation-for="DropoffDate" class="text-red-600 text-xs"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 flex justify-end space-x-3">
+                        <a asp-action="Index" class="bg-gray-300 text-gray-800 py-2 px-6 rounded-md font-semibold hover:bg-gray-400 transition">Cancel</a>
+                        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-blue-700 transition">Submit Request</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

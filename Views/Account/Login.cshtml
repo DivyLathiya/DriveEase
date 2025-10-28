@@ -1,0 +1,61 @@
+@using CarRentalMvc.Models
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout"; // Use the main layout
+}
+
+<div id="login-container" class="flex items-center justify-center">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-4">
+        <div class="text-center mb-6">
+            <div class="text-4xl font-bold text-blue-600 mb-2">
+                <ion-icon name="car-sport-outline" class="align-middle"></ion-icon>
+                DriveEase
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-800">Welcome Back</h2>
+            <p class="text-gray-500">Please select your role to login.</p>
+        </div>
+
+        <form asp-action="Login" method="post">
+            <!-- This shows validation errors -->
+            <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm mb-4"></div>
+            
+            <!-- Hidden field for return URL -->
+            <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+
+            <!-- Role Toggle -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2 text-center">Are you a User or an Admin?</label>
+                <div class="switch-field flex justify-center">
+                    <input type="radio" id="login-radio-user" asp-for="Role" value="User" checked>
+                    <label for="login-radio-user">
+                        <ion-icon name="person-outline"></ion-icon> User
+                    </label>
+                    <input type="radio" id="login-radio-admin" asp-for="Role" value="Admin">
+                    <label for="login-radio-admin">
+                        <ion-icon name="shield-checkmark-outline"></ion-icon> Admin
+                    </label>
+                </div>
+            </div>
+
+            <!-- Email Input -->
+            <div class="mb-4">
+                <label asp-for="Email" class="block text-sm font-medium text-gray-700"></label>
+                <input asp-for="Email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" value="user@example.com">
+                <span asp-validation-for="Email" class="text-red-600 text-xs"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div class="mb-6">
+                <label asp-for="Password" class="block text-sm font-medium text-gray-700"></label>
+                <input asp-for="Password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" value="password">
+                <span asp-validation-for="Password" class="text-red-600 text-xs"></span>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out text-lg">
+                Login
+            </button>
+        </form>
+    </div>
+</div>

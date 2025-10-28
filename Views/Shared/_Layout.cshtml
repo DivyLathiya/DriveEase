@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DriveEase</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="antialiased bg-gray-100">
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a asp-controller="Home" asp-action="Index" class="text-3xl font-bold text-blue-600">
+                <ion-icon name="car-sport-outline"></ion-icon>
+                DriveEase
+            </a>
+
+            <!-- Login/Logout Buttons -->
+            <div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="text-gray-700 mr-4">Hello, @User.Identity.Name!</span>
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Admin" asp-action="Index" class="font-medium text-blue-600 hover:text-blue-800 mr-4">Admin Dashboard</a>
+                    }
+                    
+                    <!-- Logout is a POST, so it must be a form -->
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="inline">
+                        <button type="submit" class="font-medium text-red-600 hover:text-red-800">Logout</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="font-medium text-blue-600 hover:text-blue-800">Login</a>
+                }
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <main role="main">
+            @RenderBody() <!-- This is where child pages are injected -->
+        </main>
+    </div>
+
+    <!-- Custom Alert/Message Box for TempData -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div id="message-box" class="modal modal-active fixed top-5 right-5 z-50">
+            <div id="message-content" class="p-4 rounded-md text-white font-medium bg-green-500">
+                @TempData["SuccessMessage"]
+            </div>
+        </div>
+    }
+
+    <!-- Custom JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/site.js" defer></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

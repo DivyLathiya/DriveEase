@@ -1,0 +1,47 @@
+﻿@using CarRentalMvc.Models
+@model IEnumerable<Car>
+@{
+    ViewData["Title"] = "Available Cars";
+}
+
+<!-- Search/Booking Form -->
+<div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Find Your Ride</h2>
+    <!-- In a real app, this form would submit to filter the car list -->
+    <form class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+        <div>
+            <label for="pickup-location" class="block text-sm font-medium text-gray-700">Pickup Location</label>
+            <input type="text" id="pickup-location" value="Miami International Airport" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+        </div>
+        <div>
+            <label for="pickup-date" class="block text-sm font-medium text-gray-700">Pickup Date</label>
+            <input type="date" id="pickup-date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+        </div>
+        <div>
+            <label for="dropoff-date" class="block text-sm font-medium text-gray-700">Dropoff Date</label>
+            <input type="date" id="dropoff-date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+            <ion-icon name="search-outline"></ion-icon> Search Cars
+        </button>
+    </form>
+</div>
+
+<!-- Car Listings -->
+<div id="car-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @foreach (var car in Model)
+    {
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-[1.02]">
+            <img src="@car.Img" alt="@car.Name" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/600x400/gray/white?text=Image+Not+Found'">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold mb-1">@car.Name</h3>
+                <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">@car.Type</span>
+                <p class="text-2xl font-bold text-gray-900 mb-4">$@car.Price.ToString("F2") <span class="text-sm font-normal text-gray-600">/ day</span></p>
+                <!-- This link goes to the Booking page -->
+                <a asp-controller="Home" asp-action="Book" asp-route-id="@car.Id" class="text-center w-full bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition duration-150 ease-in-out block">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    }
+</div>
